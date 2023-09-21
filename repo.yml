@@ -5,6 +5,9 @@ scripts:
     export_data:
         script: "export_data.sh"
         language: "bash"
+    upload_data:
+        script: "upload_data.sh"
+        language: "bash"
 
 studies:
     MotorMapping:
@@ -20,9 +23,9 @@ studies:
             - name: "Joystick Study (Group C)"
               args: "--condition CC"
               xdg_icon: "xterm"
-            - name: "Export Data"
-              script: "export_data"
-              args: "MotorMapping gamepad kviq"
+            - name: "Save Data"
+              script: "upload_data"
+              args: "biden:~/documents/Data/MotorMapping gamepad kviq"
               xdg_icon: "sheets"
 
     Laterality_Hancock2023:
@@ -35,9 +38,9 @@ studies:
             - name: "Joystick Study (Group B)"
               args: "--condition MI"
               xdg_icon: "xterm"
-            - name: "Export Data"
-              script: "save_data"
-              args: "gamepad kviq"
+            - name: "Save Data"
+              script: "upload_data"
+              args: "biden:~/documents/Data/LateralityHancock2023 gamepad kviq"
               xdg_icon: "sheets"
 
     Learning_Gaughan2022:
