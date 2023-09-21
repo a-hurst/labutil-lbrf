@@ -1,0 +1,12 @@
+# Ignore all invisible files except one we've whitelisted
+**/.*
+!.gitignore
+!.github
+
+# Ignore auto-generated Python stuff
+*.pyc
+*.pyo
+*~
+*.egg-info
+dist
+build

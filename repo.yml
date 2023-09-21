@@ -1,0 +1,58 @@
+name: "LBRF"
+url: "https://github.com/a-hurst/labutil-lbrf.git"
+
+scripts:
+    export_data:
+        script: "export_data.sh"
+        language: "bash"
+
+studies:
+    MotorMapping:
+        url: "https://github.com/a-hurst/MotorMapping.git"
+        shortcut_dir: "Adaptation Hurst 2022"
+        shortcuts:
+            - name: "Joystick Study (Group A)"
+              args: "--condition PP"
+              xdg_icon: "xterm"
+            - name: "Joystick Study (Group B)"
+              args: "--condition MI"
+              xdg_icon: "xterm"
+            - name: "Joystick Study (Group C)"
+              args: "--condition CC"
+              xdg_icon: "xterm"
+            - name: "Export Data"
+              script: "export_data"
+              args: "MotorMapping gamepad kviq"
+              xdg_icon: "sheets"
+
+    Laterality_Hancock2023:
+        url: "https://github.com/LBRF-Projects/Laterality_Hancock2023.git"
+        shortcut_dir: "Laterality Hancock 2023"
+        shortcuts:
+            - name: "Joystick Study (Group A)"
+              args: "--condition PP"
+              xdg_icon: "xterm"
+            - name: "Joystick Study (Group B)"
+              args: "--condition MI"
+              xdg_icon: "xterm"
+            - name: "Export Data"
+              script: "save_data"
+              args: "gamepad kviq"
+              xdg_icon: "sheets"
+
+    Learning_Gaughan2022:
+        url: "https://github.com/LBRF-Projects/Learning_Gaughan2022.git"
+        shortcut_dir: "Learning Gaughan 2022"
+        shortcuts:
+            - name: "Run Tracelab"
+              xdg_icon: "format-convert-to-path"
+            - name: "Export Data"
+              script: "save_data"
+              xdg_icon: "sheets"
+
+    Prism_Adaptation_Rowe2023:
+        url: "https://github.com/LBRF-Projects/Prism_Adaptation_Rowe2023.git"
+        run_cmd: "pipenv run python Prism_Adaptation.py"
+        shortcuts:
+            - name: "Prism Adaptation Rowe 2023"
+              xdg_icon: "zoom-in-large"
