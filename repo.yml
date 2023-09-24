@@ -8,6 +8,9 @@ scripts:
     upload_data:
         script: "upload_data.sh"
         language: "bash"
+    chromebook-update:
+        script: "chromebook_update.py"
+        language: "python"
 
 studies:
     MotorMapping:
