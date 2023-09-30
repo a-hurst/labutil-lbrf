@@ -48,23 +48,22 @@ def fetch_source(liburl):
     # Extract source from archive
     with tarfile.open(outpath, 'r:gz') as z:
         z.extractall(path=tmpdir)
+        srcdir = z.getnames()[0]
 
-    return os.path.join(tmpdir, srcfile.replace(".tar.gz", ""))
+    return os.path.join(tmpdir, srcdir)
 
 
 # Actually run the script
 
 print("\n=== LBRF Chromebook Update Script ===\n")
 
-# Ensure old eupnea RPM repository is disabled
+# Install any desired packages
+print(" * Installing useful packages...\n")
 sub.run(
+    # Ensures old eupnea RPM repository is disabled
     ['sudo', 'dnf', 'config-manager', '--disable', 'eupnea'],
     stdout=sub.PIPE
 )
-
-
-# Install some useful packages if not already installed
-print(" - Installing useful packages...\n")
 pkgs = ['neofetch', 'ark', 'sqlitebrowser', 'micro']
 run_cmd(['sudo', 'dnf', 'install', '-y'] + pkgs)
 print("")
@@ -72,9 +71,8 @@ print("")
 
 # If keyd isn't installed, download and install it
 if not shutil.which("keyd"):
-    print(" - Installing keyd keyboard remapper...\n")
+    print(" * Installing keyd keyboard remapper...\n")
     quirks_path = os.path.join(resource_dir, "keyd.quirks")
-    conf_path = os.path.join(resource_dir, "cros-lbrf.conf")
     # Add quirks file to fix trackpad palm rejection when using keyd
     quirks_path = os.path.join(resource_dir, "keyd.quirks")
     sudo_copy(quirks_path, "/usr/share/libinput/keyd.quirks")
@@ -96,7 +94,8 @@ if not shutil.which("keyd"):
 
 # Install (or update) custom key mapping for Chromebook
 if os.path.exists("/etc/keyd"):
-    print(" - Updating custom keyboard mapping...")
+    print(" * Updating custom keyboard mapping...\n")
+    conf_path = os.path.join(resource_dir, "cros-lbrf.conf")
     sudo_copy(conf_path, "/etc/keyd/cros-lbrf.conf")
     run_cmd(['sudo', 'keyd', 'reload'])
 
@@ -107,11 +106,11 @@ ssh_conf_path = os.path.join(ssh_path, "config")
 ssh_conf_path_usb = "/run/media/lbrf/USB360/lbrf_ssh_conf"
 if os.path.exists(ssh_conf_path_usb):
     if not os.path.exists(ssh_conf_path):
-        print(" - Adding ssh config file...")
+        print(" * Adding ssh config file...\n")
         if not os.path.exists(ssh_path):
             os.mkdir(ssh_path)
             os.chmod(ssh_path, 0o700)
         shutil.copyfile(ssh_conf_path_usb, ssh_conf_path)
         os.chmod(ssh_conf_path, 0o600)
 
-print("\n=== Updates Completed Successfully! ===\n")
+print("=== Updates Completed Successfully! ===\n")
