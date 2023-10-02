@@ -4,6 +4,7 @@ import tarfile
 import tempfile
 import subprocess as sub
 from urllib.request import urlopen
+from click import secho
 from labutil.utils import err, run_cmd
 
 # Get resources path for script
@@ -55,10 +56,10 @@ def fetch_source(liburl):
 
 # Actually run the script
 
-print("\n=== LBRF Chromebook Update Script ===\n")
+secho("\n=== LBRF Chromebook Update Script ===\n", bold=True, fg='cyan')
 
 # Install any desired packages
-print(" * Installing useful packages...\n")
+secho(" * Installing useful packages...\n", bold=True)
 sub.run(
     # Ensures old eupnea RPM repository is disabled
     ['sudo', 'dnf', 'config-manager', '--disable', 'eupnea'],
@@ -71,7 +72,7 @@ print("")
 
 # If keyd isn't installed, download and install it
 if not shutil.which("keyd"):
-    print(" * Installing keyd keyboard remapper...\n")
+    secho(" * Installing keyd keyboard remapper...\n", bold=True)
     quirks_path = os.path.join(resource_dir, "keyd.quirks")
     # Add quirks file to fix trackpad palm rejection when using keyd
     quirks_path = os.path.join(resource_dir, "keyd.quirks")
@@ -94,7 +95,7 @@ if not shutil.which("keyd"):
 
 # Install (or update) custom key mapping for Chromebook
 if os.path.exists("/etc/keyd"):
-    print(" * Updating custom keyboard mapping...\n")
+    secho(" * Updating custom keyboard mapping...\n", bold=True)
     conf_path = os.path.join(resource_dir, "cros-lbrf.conf")
     sudo_copy(conf_path, "/etc/keyd/cros-lbrf.conf")
     run_cmd(['sudo', 'keyd', 'reload'])
@@ -106,11 +107,11 @@ ssh_conf_path = os.path.join(ssh_path, "config")
 ssh_conf_path_usb = "/run/media/lbrf/USB360/lbrf_ssh_conf"
 if os.path.exists(ssh_conf_path_usb):
     if not os.path.exists(ssh_conf_path):
-        print(" * Adding ssh config file...\n")
+        secho(" * Adding ssh config file...\n", bold=True)
         if not os.path.exists(ssh_path):
             os.mkdir(ssh_path)
             os.chmod(ssh_path, 0o700)
         shutil.copyfile(ssh_conf_path_usb, ssh_conf_path)
         os.chmod(ssh_conf_path, 0o600)
 
-print("=== Updates Completed Successfully! ===\n")
+secho("=== Updates Completed Successfully! ===\n", bold=True, fg='cyan')
