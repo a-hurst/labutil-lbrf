@@ -65,7 +65,7 @@ sub.run(
     ['sudo', 'dnf', 'config-manager', '--disable', 'eupnea'],
     stdout=sub.PIPE
 )
-pkgs = ['neofetch', 'ark', 'sqlitebrowser', 'micro']
+pkgs = ['neofetch', 'ark', 'sqlitebrowser', 'micro', 'libusb1-devel']
 run_cmd(['sudo', 'dnf', 'install', '-y'] + pkgs)
 print("")
 
@@ -113,5 +113,19 @@ if os.path.exists(ssh_conf_path_usb):
             os.chmod(ssh_path, 0o700)
         shutil.copyfile(ssh_conf_path_usb, ssh_conf_path)
         os.chmod(ssh_conf_path, 0o600)
+
+
+# Install labjack USB driver from source (if not already installed)
+has_exodriver = os.path.exists('/usr/local/lib/liblabjackusb.so')
+if not has_exodriver:
+    secho(" * Installing LabJack USB driver...\n", bold=True)
+    # Download and install LabJack driver
+    url = "https://github.com/labjack/exodriver/archive/refs/tags/v2.7.0.tar.gz"
+    srcdir = fetch_source(url)
+    os.chdir(srcdir)
+    success = run_cmd(['sudo', './install.sh'])
+    if not success:
+        err("Error running command '{0}'.".format(cmd.join(" ")))
+    print("")
 
 secho("=== Updates Completed Successfully! ===\n", bold=True, fg='cyan')
