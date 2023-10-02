@@ -56,7 +56,7 @@ def fetch_source(liburl):
 
 # Actually run the script
 
-secho("\n=== LBRF Chromebook Update Script ===\n", bold=True, fg='cyan')
+secho("\n=== LBRF Chromebook Update Script ===\n", bold=True, fg='bright_green')
 
 # Install any desired packages
 secho(" * Installing useful packages...\n", bold=True)
@@ -138,4 +138,4 @@ if not "dialout" in user_groups:
         err("Unable to add user to dialout group.")
     print("Permissions updated, please restart for the changes to take effect!\n")
 
-secho("=== Updates Completed Successfully! ===\n", bold=True, fg='cyan')
+secho("=== Updates Completed Successfully! ===\n", bold=True, fg='bright_green')
