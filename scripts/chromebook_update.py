@@ -5,7 +5,7 @@ import tempfile
 import subprocess as sub
 from urllib.request import urlopen
 from click import secho
-from labutil.utils import err, run_cmd
+from labutil.utils import err, run_cmd, cmd_output
 
 # Get resources path for script
 repo_dir = os.path.dirname(os.path.abspath(__file__))
@@ -127,5 +127,15 @@ if not has_exodriver:
     if not success:
         err("Error running command '{0}'.".format(cmd.join(" ")))
     print("")
+
+
+# Fix permissions for using USB serial adapters
+user_groups = cmd_output(['groups']).split(" ")
+if not "dialout" in user_groups:
+    secho(" * Fixing USB serial adapter permissions...\n", bold=True)
+    success = run_cmd(['sudo', 'gpasswd', '-a', 'lbrf', 'dialout'])
+    if not success:
+        err("Unable to add user to dialout group.")
+    print("Permissions updated, please restart for the changes to take effect!\n")
 
 secho("=== Updates Completed Successfully! ===\n", bold=True, fg='cyan')
