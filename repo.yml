@@ -49,6 +49,24 @@ studies:
               args: "biden:~/documents/Data/LateralityHancock2023 gamepad kviq"
               xdg_icon: "sheets"
 
+    Rotation_Maillet2024:
+        url: "https://github.com/LBRF-Projects/Rotation_Maillet2024.git"
+        shortcut_dir: "Adaptation Maillet 2024"
+        shortcuts:
+            - name: "Joystick Study (Group A)"
+              args: "--condition PP"
+              xdg_icon: "xterm"
+            - name: "Joystick Study (Group B)"
+              args: "--condition MI"
+              xdg_icon: "xterm"
+            - name: "Joystick Study (Group C)"
+              args: "--condition CC"
+              xdg_icon: "xterm"
+            - name: "Save Data"
+              script: "upload_data"
+              args: "biden:~/documents/Data/RotationMaillet2024 gamepad kviq"
+              xdg_icon: "sheets"
+
     Learning_Gaughan2022:
         url: "https://github.com/LBRF-Projects/Learning_Gaughan2022.git"
         shortcut_dir: "Learning Gaughan 2022"
