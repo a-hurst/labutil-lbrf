@@ -77,6 +77,17 @@ studies:
               script: "save_data"
               xdg_icon: "sheets"
 
+    Feedback_Gaughan2025:
+        url: "https://github.com/LBRF-Projects/Feedback_Gaughan2025.git"
+        shortcut_dir: "Feedback Gaughan 2025"
+        shortcuts:
+            - name: "Run Tracelab"
+              xdg_icon: "format-convert-to-path"
+            - name: "Save Data"
+              script: "upload_data"
+              args: "biden:~/documents/Data/FeedbackGaughan2025"
+              xdg_icon: "sheets"
+
     Prism_Adaptation_Rowe2023:
         url: "https://github.com/LBRF-Projects/Prism_Adaptation_Rowe2023.git"
         run_cmd: "pipenv run python Prism_Adaptation.py"
