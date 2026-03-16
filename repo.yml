@@ -31,6 +31,20 @@ studies:
               args: "biden:~/documents/Data/MotorMapping gamepad kviq"
               xdg_icon: "sheets"
 
+    SequenceLearning:
+        url: "https://github.com/a-hurst/SequenceLearning.git"
+        shortcut_dir: "Sequences Hurst 2026"
+        shortcuts:
+            - name: "Sequence Study (Group A)"
+              args: "--condition PP"
+              xdg_icon: "kdiamond"
+            - name: "Sequence Study (Group B)"
+              args: "--condition MI"
+              xdg_icon: "kdiamond"
+            - name: "Sequence Study (Group C)"
+              args: "--condition CC"
+              xdg_icon: "kdiamond"
+
     Laterality_Hancock2023:
         url: "https://github.com/LBRF-Projects/Laterality_Hancock2023.git"
         shortcut_dir: "Laterality Hancock 2023"
