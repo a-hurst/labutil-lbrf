@@ -36,13 +36,13 @@ studies:
         shortcut_dir: "Sequences Hurst 2026"
         shortcuts:
             - name: "Sequence Study (Group A)"
-              args: "--condition PP"
+              args: "-d --condition PP"
               xdg_icon: "kdiamond"
             - name: "Sequence Study (Group B)"
-              args: "--condition MI"
+              args: "-d --condition MI"
               xdg_icon: "kdiamond"
             - name: "Sequence Study (Group C)"
-              args: "--condition CC"
+              args: "-d --condition CC"
               xdg_icon: "kdiamond"
 
     Laterality_Hancock2023:
