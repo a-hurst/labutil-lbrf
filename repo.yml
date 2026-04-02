@@ -8,6 +8,9 @@ scripts:
     upload_data:
         script: "upload_data.sh"
         language: "bash"
+    destroy_data:
+        script: "destroy_data.py"
+        language: "python"
     chromebook-update:
         script: "chromebook_update.py"
         language: "python"
@@ -36,14 +39,21 @@ studies:
         shortcut_dir: "Sequences Hurst 2026"
         shortcuts:
             - name: "Sequence Study (Group A)"
-              args: "-d --condition PP"
+              args: "--condition PP"
               xdg_icon: "kdiamond"
             - name: "Sequence Study (Group B)"
-              args: "-d --condition MI"
+              args: "--condition MI"
               xdg_icon: "kdiamond"
             - name: "Sequence Study (Group C)"
-              args: "-d --condition CC"
+              args: "--condition CC"
               xdg_icon: "kdiamond"
+            - name: "Save Data"
+              script: "upload_data"
+              args: "rosa:~/share/Data/SequenceLearning sequences recall"
+              xdg_icon: "sheets"
+            - name: "Revert Database"
+              script: "destroy_data"
+              xdg_icon: "abrt"
 
     Laterality_Hancock2023:
         url: "https://github.com/LBRF-Projects/Laterality_Hancock2023.git"
