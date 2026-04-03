@@ -49,7 +49,7 @@ studies:
               xdg_icon: "kdiamond"
             - name: "Save Data"
               script: "upload_data"
-              args: "rosa:/media/share/Data/SequenceLearning sequences recall"
+              args: "rosa:/srv/share/Data/SequenceLearning sequences recall"
               xdg_icon: "sheets"
             - name: "Revert Database"
               script: "destroy_data"
