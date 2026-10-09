@@ -8,6 +8,9 @@ scripts:
     upload_data:
         script: "upload_data.sh"
         language: "bash"
+    upload_data_basic:
+        script: "upload_data_basic.sh"
+        language: "bash"
     destroy_data:
         script: "destroy_data.py"
         language: "python"
